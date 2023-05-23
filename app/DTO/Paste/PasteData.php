@@ -14,7 +14,7 @@ class PasteData extends DTO
      * @param int|null $user_id
      * @param int $expiration_time
      * @param Carbon|null $timeToDelete
-     * @param int $access_restriction
+     * @param string $access_restriction
      * @param string $language
      */
     public function __construct(
@@ -24,7 +24,7 @@ class PasteData extends DTO
         public ?int $user_id,
         public readonly int $expiration_time,
         public ?Carbon $timeToDelete,
-        public readonly int $access_restriction,
+        public readonly string $access_restriction,
         public readonly string $language
     )
     {}

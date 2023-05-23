@@ -19,4 +19,9 @@ interface PasteRepositoryInterface extends RepositoryInterface
      * @return Paste
      */
     public function  getPasteByUrl(string $url): Paste;
+
+    /**
+     * @return int
+     */
+    public function deletePastes(): int;
 }

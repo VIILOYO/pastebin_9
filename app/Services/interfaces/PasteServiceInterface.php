@@ -6,6 +6,7 @@ use App\DTO\Paste\PasteData;
 use App\Models\Paste;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+
 interface PasteServiceInterface
 {
     /**
@@ -26,4 +27,9 @@ interface PasteServiceInterface
      * @return LengthAwarePaginator
      */
     public function getPastesByUser(string $id): LengthAwarePaginator;
+
+    /**
+     * @return int
+     */
+    public function deletePastes(): int;
 }

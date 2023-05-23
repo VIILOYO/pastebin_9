@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DTO\Paste\PasteData;
+use App\Enums\PasteEnum;
 use App\Http\Requests\PasteCreateRequest;
+use App\Models\Paste;
 use App\Services\interfaces\PasteServiceInterface;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -12,7 +15,7 @@ use Illuminate\View\View;
 class PasteController extends Controller
 {
     public function __construct(
-        public readonly PasteServiceInterface $pasteService
+        public readonly PasteServiceInterface $pasteService,
     )
     {}
 
@@ -44,9 +47,11 @@ class PasteController extends Controller
      */
     public function show(string $url): View|RedirectResponse
     {
+        /** @var Paste $paste */
         $paste = $this->pasteService->showPaste($url);
+        dd($paste);
 
-        if($paste->access_restriction === 3 && Auth::id() !== $paste->user_id) {
+        if($paste->access_restriction === PasteEnum::PRIVATE && Auth::id() !== $paste->user_id) {
             return redirect()->back();
         };
 

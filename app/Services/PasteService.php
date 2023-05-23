@@ -23,9 +23,9 @@ class PasteService implements PasteServiceInterface
      */
     public function savePaste(PasteData $data, ?int $user_id = null): Paste
     {
-        $data->url = substr(Hash::make($data->title), 0, 10);
+        $data->url = str_replace(['/', '\\', '|', '$', '%'], '', Hash::make($data->title));
         $data->user_id = $user_id;
-        if($data->expiration_time > 0) $data->timeToDelete = Carbon::now()->addMinutes($data->expiration_time);
+        if($data->expiration_time) $data->timeToDelete = Carbon::now()->addMinutes($data->expiration_time);
         return $this->pasteRepository->create($data->toArray());
     }
 
@@ -44,4 +44,13 @@ class PasteService implements PasteServiceInterface
     {
         return $this->pasteRepository->pastesPaginate($id);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function deletePastes(): int
+    {
+        return $this->pasteRepository->deletePastes();
+    }
+
 }

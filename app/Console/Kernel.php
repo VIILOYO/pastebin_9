@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(Paste::where('timeToDelete', '<', Carbon::now())->delete())->everyMinute();
+        $schedule->command('paste:deletePastes')->everyMinute();
     }
 
     /**

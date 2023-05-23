@@ -39,7 +39,7 @@
         <div class="w-25 mb-2">
             <label for="expiration_time">Время жизни</label>
             <select class="form-select bg-white" name="expiration_time">
-                <option value="10">10 минут</option>
+                <option value="1">10 минут</option>
                 <option value="60">1 час</option>
                 <option value="180">3 часа</option>
                 <option value="1440">1 день</option>
@@ -55,9 +55,9 @@
         <div class="w-25 mb-2">
             <label for="access_restriction">Доступ</label>
             <select class="form-select bg-white" name="access_restriction">
-                <option value="1" selected>public -- доступна всем, видна в списках</option>
-                <option value="2">unlisted -- доступна только по ссылке</option>
-                <option value="3" {{ Auth::user() ? null : 'disabled' }}>private -- доступна только автору</option>
+                @foreach( App\Enums\PasteEnum::cases() as $enum )
+                    <option value="{{ $enum }}">{{ __('privacy.' . $enum->value)}}</option>
+                @endforeach
             </select>
             @error('access_restriction')
                 <p class="text-danger">{{ $message }}</p>
@@ -75,7 +75,7 @@
         selectElement.addEventListener("change", (event) => {
             editor.setOption('mode', event.target.value);
         });
-        
+
         let editor = CodeMirror.fromTextArea(myTextarea, {
             lineNumbers: true,
             mode: `text/javascript`,

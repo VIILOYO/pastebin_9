@@ -3,9 +3,11 @@
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\PasteRepositoryInterface;
+use Carbon\Carbon;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Models\Paste;
 use Illuminate\Pagination\LengthAwarePaginator;
+
 
 /**
  * Class PasteRepositoryEloquent.
@@ -35,8 +37,16 @@ class PasteRepositoryEloquent extends BaseRepository implements PasteRepositoryI
     /**
      * @inheritDoc
      */
-    public function  getPasteByUrl(string $url): Paste
+    public function getPasteByUrl(string $url): Paste
     {
         return $this->getModel()->where('url', $url)->firstOrFail();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function deletePastes(): int
+    {
+        return $this->getModel()->where('timeToDelete', '<', Carbon::now())->delete();
     }
 }
