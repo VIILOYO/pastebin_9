@@ -15,15 +15,13 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return string[]
      */
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:5'],
-            'password' => ['required', 'min:5'],
+            'name' => 'required|min:5',
+            'password' => 'required|min:5',
         ];
     }
 }

@@ -7,10 +7,9 @@ use App\Enums\PasteEnum;
 use App\Http\Requests\PasteCreateRequest;
 use App\Models\Paste;
 use App\Services\interfaces\PasteServiceInterface;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class PasteController extends Controller
 {
@@ -49,7 +48,6 @@ class PasteController extends Controller
     {
         /** @var Paste $paste */
         $paste = $this->pasteService->showPaste($url);
-        dd($paste);
 
         if($paste->access_restriction === PasteEnum::PRIVATE && Auth::id() !== $paste->user_id) {
             return redirect()->back();
@@ -59,10 +57,10 @@ class PasteController extends Controller
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @return View|RedirectResponse
      */
-    public function userPastes(string $id): View|RedirectResponse
+    public function userPastes(int $id): View|RedirectResponse
     {
         if($id != Auth::id()) {
             return redirect()->back();

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\Interfaces\PasteRepositoryInterface;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Models\Paste;
 use Illuminate\Pagination\LengthAwarePaginator;

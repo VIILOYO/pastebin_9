@@ -10,6 +10,9 @@ use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
 {
+    /**
+     * @var array|string[]
+     */
     public array $singletons = [
         PasteRepositoryInterface::class => PasteRepositoryEloquent::class,
         AuthRepositoryInterface::class => AuthRepositoryEloquent::class,

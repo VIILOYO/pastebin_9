@@ -9,6 +9,7 @@ use App\Services\interfaces\PasteServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Collection;
 
 class PasteService implements PasteServiceInterface
 {
@@ -40,7 +41,7 @@ class PasteService implements PasteServiceInterface
     /**
      * @inheritDoc
      */
-    public function getPastesByUser(string $id): LengthAwarePaginator
+    public function getPastesByUser(int $id): LengthAwarePaginator
     {
         return $this->pasteRepository->pastesPaginate($id);
     }
@@ -52,5 +53,4 @@ class PasteService implements PasteServiceInterface
     {
         return $this->pasteRepository->deletePastes();
     }
-
 }

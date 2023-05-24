@@ -3,10 +3,6 @@
 namespace App\Providers;
 
 use App\Models\Paste;
-use App\Services\AuthService;
-use App\Services\interfaces\AuthServiceInterface;
-use App\Services\interfaces\PasteServiceInterface;
-use App\Services\PasteService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             View::share('publicPastes', Paste::where('access_restriction', 'public')->orderByDesc('created_at')->limit(10)->get());
 
             if(Auth::user()) {
-                $personalPastes = Paste::where('user_id', Auth::user()->id)->orderByDesc('created_at')->limit(10)->get();
+                $personalPastes = Paste::where('user_id', Auth::id())->orderByDesc('created_at')->limit(10)->get();
                 View::share('personalPastes', $personalPastes );
             }
         });

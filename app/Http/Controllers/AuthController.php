@@ -7,10 +7,12 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Services\AuthService;
 
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
+
 
 class AuthController extends Controller
 {
@@ -21,9 +23,9 @@ class AuthController extends Controller
     {}
 
     /**
-     * @return View
+     * @return Factory|View
      */
-    public function login(): View
+    public function login(): Factory|View
     {
         return view('auth.login');
     }

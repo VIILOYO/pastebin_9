@@ -3,6 +3,7 @@
 namespace App\Repositories\Interfaces;
 
 use App\Models\Paste;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -18,7 +19,7 @@ interface PasteRepositoryInterface extends RepositoryInterface
      * @param string $url
      * @return Paste
      */
-    public function  getPasteByUrl(string $url): Paste;
+    public function getPasteByUrl(string $url): Paste;
 
     /**
      * @return int

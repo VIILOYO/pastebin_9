@@ -10,6 +10,9 @@ use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
 {
+    /**
+     * @var array|string[]
+     */
     public array $bindings = [
         PasteServiceInterface::class => PasteService::class,
         AuthServiceInterface::class => AuthService::class,

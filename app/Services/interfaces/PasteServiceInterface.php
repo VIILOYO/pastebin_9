@@ -4,6 +4,7 @@ namespace App\Services\interfaces;
 
 use App\DTO\Paste\PasteData;
 use App\Models\Paste;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
@@ -23,10 +24,10 @@ interface PasteServiceInterface
     public function showPaste(string $url): Paste;
 
     /**
-     * @param string $id
+     * @param int $id
      * @return LengthAwarePaginator
      */
-    public function getPastesByUser(string $id): LengthAwarePaginator;
+    public function getPastesByUser(int $id): LengthAwarePaginator;
 
     /**
      * @return int

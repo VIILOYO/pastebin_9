@@ -1,0 +1,9 @@
+# Игнор ошибок, которые на самом деле не ошибки в проекты, а проблемы с тем, как Larastan понимает Laravel
+parameters:
+    ignoreErrors:
+        - message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:where\\(\\)\\.$#"
+          count: 3
+          path: app/Repositories/PasteRepositoryEloquent.php
+        - message: "#^Call to an undefined static method App\\\\Models\\\\Paste\\:\\:where\\(\\)\\.$#"
+          count: 2
+          path: app/Providers/AppServiceProvider.php

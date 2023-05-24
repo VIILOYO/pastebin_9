@@ -15,18 +15,16 @@ class PasteCreateRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return string[]~
      */
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:3'],
-            'text' => ['required'],
-            'expiration_time' => ['required'],
-            'access_restriction' => ['required'],
-            'language' => ['required'],
+            'title' => 'required|min:3',
+            'text' => 'required',
+            'expiration_time' => 'required',
+            'access_restriction' => 'required',
+            'language' => 'required',
         ];
     }
 }
