@@ -9,7 +9,7 @@
             <label for="name">Логин</label>
             <input class="form-controll bg-white" type="login" name="name" placeholder="Логин" value="{{ old('name') ? old('name') : null }}">
             @error('name')
-                <p class="text-danger">{{ $message }}</p>   
+                <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
 
@@ -17,14 +17,16 @@
             <label for="password">Пароль</label>
             <input class="form-controll bg-white" type="password" name="password" placeholder="Пароль">
             @error('password')
-                <p class="text-danger">{{ $message }}</p>   
+                <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
 
         <button type="submit" class="btn btn-success">Войти</button>
     </form>
-    @if ( URL::previous() === URL::current() )
-        <p class="text-danger">Неверные данные</p>
-    @endif
+
+    @error('auth')
+        <p class="text-danger">{{ $message }}</p>
+    @enderror
+
 </div>
 @endsection

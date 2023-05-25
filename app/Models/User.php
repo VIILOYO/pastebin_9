@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $password
+ * @property bool $is_banned
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

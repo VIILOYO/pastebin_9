@@ -48,6 +48,6 @@ class PasteRepositoryEloquent extends BaseRepository implements PasteRepositoryI
      */
     public function deletePastes(): int
     {
-        return $this->getModel()->where('timeToDelete', '<', Carbon::now())->delete();
+        return $this->getModel()->where('time_to_delete', '<', Carbon::now())->delete();
     }
 }

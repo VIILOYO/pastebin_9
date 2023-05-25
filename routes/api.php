@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\ApiAuthController;
+use App\Http\Controllers\Api\ApiPasteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['controller' => ApiPasteController::class, 'prefix' => '/pastes'], function () {
+    Route::post('/store', 'store');
+    Route::get('/user/{id}', 'userPastes')->middleware('auth:sanctum');
+    Route::get('/{url}', 'show');
+});
+
+Route::group(['controller' => ApiAuthController::class], function () {
+    Route::post('/custom-registration', 'customRegistration')->middleware('guest');
+    Route::post('/custom-login', 'customLogin')->middleware('guest');
+    Route::get('/logout', 'logout')->middleware('auth:sanctum');
 });

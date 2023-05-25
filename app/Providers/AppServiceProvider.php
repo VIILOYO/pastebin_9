@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Paste;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request): void
     {
+        JsonResource::withoutWrapping();
         Paginator::defaultView('vendor.pagination.bootstrap-5');
 
         view()->composer('*', function ($view)

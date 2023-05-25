@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Services\interfaces\PasteServiceInterface;
 use App\Services\PasteService;
 use Illuminate\Console\Command;
 

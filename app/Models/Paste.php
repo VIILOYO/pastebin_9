@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
+ * @property integer $id
  * @property integer $user_id
  * @property string $title
  * @property string $url
@@ -16,6 +18,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer$expiration_time
  * @property string $access_restriction
  * @property string $language
+ * @property Carbon $time_to_delete
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Paste extends Model
 {
@@ -31,7 +36,7 @@ class Paste extends Model
         'expiration_time',
         'access_restriction',
         'language',
-        'timeToDelete',
+        'time_to_delete',
     ];
 
     public function author(): BelongsTo

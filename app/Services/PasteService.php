@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 
 class PasteService implements PasteServiceInterface
 {
@@ -24,16 +25,18 @@ class PasteService implements PasteServiceInterface
      */
     public function savePaste(PasteData $data, ?int $user_id = null): Paste
     {
-        $data->url = str_replace(['/', '\\', '|', '$', '%'], '', Hash::make($data->title));
+        $data->url = Str::random(30);
         $data->user_id = $user_id;
-        if($data->expiration_time) $data->timeToDelete = Carbon::now()->addMinutes($data->expiration_time);
+        if($data->expiration_time) {
+            $data->time_to_delete = Carbon::now()->addMinutes($data->expiration_time);
+        }
         return $this->pasteRepository->create($data->toArray());
     }
 
     /**
      * @inheritDoc
      */
-    public function showPaste(string $url): Paste
+    public function showPaste(string $url): Paste|null
     {
         return $this->pasteRepository->getPasteByUrl($url);
     }

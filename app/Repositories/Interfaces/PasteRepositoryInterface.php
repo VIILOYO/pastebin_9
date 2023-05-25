@@ -11,7 +11,7 @@ interface PasteRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param int $user_id
-     * @return LengthAwarePaginator
+     * @return LengthAwarePaginator<Paste>
      */
     public function pastesPaginate(int $user_id): LengthAwarePaginator;
 

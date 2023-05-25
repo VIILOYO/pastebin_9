@@ -4,7 +4,7 @@ namespace App\DTO\Auth;
 
 use Atwinta\DTO\DTO;
 
-class RegistrationData extends DTO
+class AuthData extends DTO
 {
     /**
      * @param string $name

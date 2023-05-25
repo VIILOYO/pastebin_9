@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\Auth\RegistrationData;
+use App\DTO\Auth\AuthData;
+use App\Exceptions\AuthException;
+use App\Exceptions\NotFoundException;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Services\AuthService;
@@ -32,17 +34,21 @@ class AuthController extends Controller
 
     /**
      * @param LoginRequest $request
+     * @throws AuthException
      * @return RedirectResponse
      */
     public function customLogin(LoginRequest $request): RedirectResponse
     {
-        $data = $request->validated();
+        $data = AuthData::create($request);
+        $user = $this->authService->findUser($data);
 
-        if (Auth::attempt($data)) {
-            return redirect()->intended('dashboard');
+        $user ?? throw new AuthException();
+        if($user->is_banned) {
+            throw new NotFoundException();
         }
 
-        return redirect()->route('login');
+        Auth::login($user);
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -59,7 +65,7 @@ class AuthController extends Controller
      */
     public function customRegistration(RegistrationRequest $request): RedirectResponse
     {
-        $data = RegistrationData::create($request);
+        $data = AuthData::create($request);
         $this->authService->registrationUser($data);
 
         return redirect()->route('login');

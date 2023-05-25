@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\DTO\Auth\RegistrationData;
+use App\DTO\Auth\AuthData;
+use App\Models\Paste;
 use App\Models\User;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
 use App\Services\interfaces\AuthServiceInterface;
@@ -20,11 +21,19 @@ class AuthService implements AuthServiceInterface
     /**
      * @inheritDoc
      */
-    public function registrationUser(RegistrationData $data): User
+    public function registrationUser(AuthData $data): User
     {
         return $this->authRepository->create([
             'name' => $data->name,
             'password' => Hash::make($data->password)
         ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function findUser(AuthData $data): User|null
+    {
+        return $this->authRepository->findWhere(['name' => $data->name])->first();
     }
 }

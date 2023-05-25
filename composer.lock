@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55785d4e13f60aa2bbe34db7c570848b",
+    "content-hash": "26b0aedda9bbea93061efc8231d7aa66",
     "packages": [
         {
             "name": "atwinta/data-transfer-object",

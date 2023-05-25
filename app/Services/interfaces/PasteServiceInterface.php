@@ -19,9 +19,9 @@ interface PasteServiceInterface
 
     /**
      * @param string $url
-     * @return Paste
+     * @return Paste|null
      */
-    public function showPaste(string $url): Paste;
+    public function showPaste(string $url): Paste|null;
 
     /**
      * @param int $id

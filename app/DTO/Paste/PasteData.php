@@ -13,7 +13,7 @@ class PasteData extends DTO
      * @param string|null $url
      * @param int|null $user_id
      * @param int $expiration_time
-     * @param Carbon|null $timeToDelete
+     * @param Carbon|null $time_to_delete
      * @param string $access_restriction
      * @param string $language
      */
@@ -23,7 +23,7 @@ class PasteData extends DTO
         public ?string $url,
         public ?int $user_id,
         public readonly int $expiration_time,
-        public ?Carbon $timeToDelete,
+        public ?Carbon $time_to_delete,
         public readonly string $access_restriction,
         public readonly string $language
     )
