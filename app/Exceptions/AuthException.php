@@ -9,7 +9,7 @@ class AuthException extends AppHttpException
     /**
      * @var int
      */
-    protected $code = 302;
+    protected $code = 403;
 
     /**
      * @var string

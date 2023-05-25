@@ -2,17 +2,19 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Paste;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Paste
+ */
 class PasteResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param $request
+     * @return string[]
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'title' => $this->title,

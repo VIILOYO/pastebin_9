@@ -6,7 +6,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MetaResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * @param $request
+     * @return int[]
+     */
+    public function toArray($request): array
     {
         return [
             'per_page' => $this->resource->perPage(),

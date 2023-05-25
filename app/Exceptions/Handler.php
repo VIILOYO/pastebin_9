@@ -53,6 +53,8 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof AuthException) {
             return \response(["message" => $e->getMessage()], $e->getCode());
+        } else if ($e instanceof BanException) {
+            return \response(["message" => $e->getMessage()], $e->getCode());
         } else if ($e instanceof ValidationException) {
             $messages = collect($e->errors())->flatten();
             return \response([

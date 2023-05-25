@@ -36,7 +36,7 @@ class PasteService implements PasteServiceInterface
     /**
      * @inheritDoc
      */
-    public function showPaste(string $url): Paste|null
+    public function showPaste(string $url): Paste
     {
         return $this->pasteRepository->getPasteByUrl($url);
     }

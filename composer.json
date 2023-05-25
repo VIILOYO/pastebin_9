@@ -7,12 +7,16 @@
     "require": {
         "php": "^8.1",
         "atwinta/data-transfer-object": "^1.1",
-        "doctrine/dbal": "^3.6",
+        "atwinta/voyager-schema": "dev-master",
+        "doctrine/dbal": "^2.5",
+        "guest-one/composer-require-ext": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "larapack/doctrine-support": "^0.1.4",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",
-        "prettus/l5-repository": "^2.9"
+        "prettus/l5-repository": "^2.9",
+        "tcg/voyager": "^1.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -61,9 +65,16 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "guest-one/composer-require-ext": true
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://voyager:eGwrB5F1Yw8UVJsLEhy4@gitlab.atwinta.ru/atwinta/voyager-schema.git"
+        }
+    ]
 }

@@ -24,7 +24,7 @@
         <button type="submit" class="btn btn-success">Войти</button>
     </form>
 
-    @error('auth')
+    @error('ban')
         <p class="text-danger">{{ $message }}</p>
     @enderror
 

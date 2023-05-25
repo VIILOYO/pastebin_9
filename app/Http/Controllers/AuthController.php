@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DTO\Auth\AuthData;
 use App\Exceptions\AuthException;
+use App\Exceptions\BanException;
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
@@ -34,7 +35,7 @@ class AuthController extends Controller
 
     /**
      * @param LoginRequest $request
-     * @throws AuthException
+     * @throws AuthException|BanException
      * @return RedirectResponse
      */
     public function customLogin(LoginRequest $request): RedirectResponse
@@ -43,8 +44,9 @@ class AuthController extends Controller
         $user = $this->authService->findUser($data);
 
         $user ?? throw new AuthException();
+
         if($user->is_banned) {
-            throw new NotFoundException();
+            throw new BanException();
         }
 
         Auth::login($user);

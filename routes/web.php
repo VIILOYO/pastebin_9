@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use TCG\Voyager\Facades\Voyager;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -11,7 +13,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['controller' => PasteController::class, 'prefix' => '/pastes', 'as' => 'pastes.'], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/user/{id}', 'userPastes')->name('user')->middleware('auth');
+    Route::get('/users/{id}', 'userPastes')->name('users')->middleware('auth');
     Route::get('/{url}', 'show')->name('show');
 });
 
@@ -22,4 +24,9 @@ Route::group(['controller' => AuthController::class], function () {
     Route::get('/login', 'login')->name('login')->middleware('guest');
     Route::post('/custom-login', 'customLogin')->name('custom-login')->middleware('guest');
     Route::get('/signout', 'signOut')->name('signout')->middleware('auth');
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });

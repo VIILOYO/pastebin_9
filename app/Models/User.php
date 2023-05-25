@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property integer $id
  * @property string $name
+ * @property string $email
  * @property string $password
  * @property bool $is_banned
  */
-class User extends Authenticatable
+class User extends \TCG\Voyager\Models\User
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -28,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_banned',
     ];
 
     /**

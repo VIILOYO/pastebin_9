@@ -20,7 +20,11 @@ class ApiPasteController extends Controller
     )
     {}
 
-    public function store(PasteCreateRequest $request)
+    /**
+     * @param PasteCreateRequest $request
+     * @return PasteResource
+     */
+    public function store(PasteCreateRequest $request): PasteResource
     {
         $data = PasteData::create($request);
         $user_id = Auth::id();
@@ -30,19 +34,27 @@ class ApiPasteController extends Controller
         return PasteResource::make($paste);
     }
 
-    public function show(string $url)
+    /**
+     * @param string $url
+     * @return PasteResource
+     */
+    public function show(string $url): PasteResource
     {
         /** @var Paste $paste */
         $paste = $this->pasteService->showPaste($url);
 
-        if($paste->access_restriction === PasteEnum::PRIVATE && Auth::id() !== $paste->user_id) {
+        if($paste->access_restriction == PasteEnum::PRIVATE && Auth::id() !== $paste->user_id) {
             throw new NotFoundException();
         };
 
         return new PasteResource($paste);
     }
 
-    public function userPastes(int $id)
+    /**
+     * @param int $id
+     * @return PasteCollection
+     */
+    public function userPastes(int $id): PasteCollection
     {
         if($id != Auth::id()) {
             throw new NotFoundException();

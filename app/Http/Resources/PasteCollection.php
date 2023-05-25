@@ -2,17 +2,21 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Paste;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @mixin LengthAwarePaginator<Paste>
+ */
 class PasteCollection extends JsonResource
 {
     /**
-     * Transform the resource collection into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param $request
+     * @return array<string, MetaResource|AnonymousResourceCollection>
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'data' => PasteResource::collection($this->items()),

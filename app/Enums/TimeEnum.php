@@ -2,10 +2,11 @@
 
 namespace App\Enums;
 
-enum PasteEnum: string
+enum TimeEnum: string
 {
     case PUBLIC = 'public';
     case UNLISTED = 'unlisted';
     case PRIVATE = 'private';
 
 }
+

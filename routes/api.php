@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->user();
 });
 
 Route::group(['controller' => ApiPasteController::class, 'prefix' => '/pastes'], function () {
     Route::post('/store', 'store');
-    Route::get('/user/{id}', 'userPastes')->middleware('auth:sanctum');
+    Route::get('/users/{id}', 'userPastes')->middleware('auth:sanctum');
     Route::get('/{url}', 'show');
 });
 
