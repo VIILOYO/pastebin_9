@@ -1,0 +1,214 @@
+openapi: 3.0.3
+info:
+  title: Swagger Pastebin
+  version: 1.0.0
+servers:
+  - url: http://pastebin_9.test/api/v1
+tags:
+  - name: Паста
+    description: Все про пасты
+  - name: Пользователь
+    description: Авторизация
+paths:
+  /pastes/store:
+    post:
+      tags:
+        - Паста
+      summary: Добавить новую пасту
+      description: Добавить новую пасту
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paste'
+        required: true
+      responses:
+        '200':
+          description: Успешная операция
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paste'
+  /pastes/{url}:
+    get:
+      tags:
+        - Паста
+      summary: Получить пасту
+      description: Получить пасту по её id
+      parameters:
+        - name: url
+          in: path
+          description: url пасты
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paste'
+        required: true
+      responses:
+        '200':
+          description: Успешная операция
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paste'
+        '404':
+          description: Запись не найдена
+  /pastes/users/{id}:
+    get:
+      tags:
+        - Паста
+      summary: Получить пасты пользователя
+      description: Пасты получаются по id пользователя
+      parameters:
+        - name: id
+          in: path
+          description: id пользователя
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Paste'
+      responses:
+        '200':
+          description: Операция успешно выполнилась
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paste'
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Пользователь не найден
+      security:
+        - BearerAuth:
+          - read
+  /custom-registration:
+    post:
+      tags:
+        - Пользователь
+      summary: Регистрация пользователя
+      description: Регисрация пользователя
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Операция успешно выполнилась
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /custom-login:
+    post:
+      tags:
+        - Пользователь
+      summary: Авторизация
+      description: Авторизация пользователя
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Операция успешно выполнилась
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          description: Пользователь забанен
+        '404':
+          description: Неверные данные
+  /logout:
+    get:
+      tags:
+        - Пользователь
+      summary: Выход
+      description: Выход авторизированного пользователя
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Операция успешно выполнилась
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+        - BearerAuth:
+            - read
+components:
+  schemas:
+    Paste:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Паста номер 1
+        url:
+          type: string
+          example: wFkHTB6iukyfF4PHMYVbA47Aw89JKg
+        text:
+          type: string
+          example: Текст пасты номер 1
+        expiration_time:
+          type: integer
+          format: int64
+          description: Минуты до удаления
+          example: 60
+          enum:
+            - 10
+            - 60
+            - 180
+            - 1440
+            - 10080
+            - 43200
+        access_restriction:
+          type: string
+          description: Доступ
+          example: public
+          enum:
+            - public
+            - unlisted
+            - private
+        language:
+          type: string
+          example: PHP
+          enum:
+            - text/javascript
+            - xml
+            - python
+            - css
+            - pascal
+            - text/x-c++sr
+            - text/x-java
+      xml:
+        name: paste
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: viiloyo
+        password:
+          type: string
+          example: 123qwe
+      xml:
+        name: user
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
