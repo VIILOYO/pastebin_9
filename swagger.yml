@@ -40,12 +40,8 @@ paths:
           in: path
           description: url пасты
           required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Paste'
-        required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Успешная операция
@@ -66,13 +62,9 @@ paths:
           in: path
           description: id пользователя
           required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Paste'
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Операция успешно выполнилась
@@ -134,11 +126,6 @@ paths:
         - Пользователь
       summary: Выход
       description: Выход авторизированного пользователя
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
       responses:
         '200':
           description: Операция успешно выполнилась
