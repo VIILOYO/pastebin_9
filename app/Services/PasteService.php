@@ -8,13 +8,10 @@ use App\Repositories\Interfaces\PasteRepositoryInterface;
 use App\Services\interfaces\PasteServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 class PasteService implements PasteServiceInterface
 {
-
     public function __construct(
         public readonly PasteRepositoryInterface $pasteRepository
     )

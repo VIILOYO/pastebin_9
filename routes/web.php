@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteController;
 use App\Http\Controllers\AuthController;

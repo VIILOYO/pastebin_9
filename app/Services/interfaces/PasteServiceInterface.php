@@ -4,10 +4,7 @@ namespace App\Services\interfaces;
 
 use App\DTO\Paste\PasteData;
 use App\Models\Paste;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-
-
 interface PasteServiceInterface
 {
     /**

@@ -7,3 +7,6 @@ parameters:
         - message: "#^Call to an undefined static method App\\\\Models\\\\Paste\\:\\:where\\(\\)\\.$#"
           count: 2
           path: app/Providers/AppServiceProvider.php
+        - message: "#^Call to an undefined static method TCG\\\\Voyager\\\\Facades\\\\Voyager\\:\\:routes\\(\\)\\.$#"
+          count: 1
+          path: routes/web.php

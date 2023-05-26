@@ -65,5 +65,3 @@ class ApiPasteController extends Controller
         return PasteCollection::make($pastes);
     }
 }
-
-

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\DTO\Auth\AuthData;
-use App\Models\Paste;
 use App\Models\User;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
 use App\Services\interfaces\AuthServiceInterface;
@@ -11,12 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService implements AuthServiceInterface
 {
-
     public function __construct(
         public readonly AuthRepositoryInterface $authRepository
     )
     {}
-
 
     /**
      * @inheritDoc

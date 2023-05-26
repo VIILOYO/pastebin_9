@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\DTO\Auth\AuthData;
 use App\Exceptions\AuthException;
 use App\Exceptions\BanException;
-use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
@@ -21,7 +20,6 @@ class ApiAuthController extends Controller
         public readonly AuthService $authService
     )
     {}
-
 
     /**
      * @param LoginRequest $request

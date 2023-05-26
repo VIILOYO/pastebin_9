@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 /**
  * @property integer $id
@@ -24,7 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Paste extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $table = 'pastes';
@@ -39,6 +36,9 @@ class Paste extends Model
         'time_to_delete',
     ];
 
+    /**
+     * @return BelongsTo
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\DTO\Auth\AuthData;
 use App\Exceptions\AuthException;
 use App\Exceptions\BanException;
-use App\Exceptions\NotFoundException;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Services\AuthService;
-
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +17,6 @@ use Illuminate\Contracts\View\View;
 
 class AuthController extends Controller
 {
-
     public function __construct(
         public readonly AuthService $authService
     )

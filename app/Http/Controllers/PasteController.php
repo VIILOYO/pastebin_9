@@ -50,7 +50,7 @@ class PasteController extends Controller
         $paste = $this->pasteService->showPaste($url);
 
 
-        if($paste->access_restriction === PasteEnum::PRIVATE && Auth::id() !== $paste->user_id) {
+        if($paste->access_restriction == PasteEnum::PRIVATE && Auth::id() !== $paste->user_id) {
             return redirect()->back();
         };
 

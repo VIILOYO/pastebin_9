@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\User;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
-use App\Validators\AuthValidator;
 
 /**
  * Class AuthRepositoryEloquent.
@@ -23,6 +22,4 @@ class AuthRepositoryEloquent extends BaseRepository implements AuthRepositoryInt
     {
         return User::class;
     }
-
-
 }

@@ -3,7 +3,6 @@
 namespace App\Repositories\Interfaces;
 
 use App\Models\Paste;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Prettus\Repository\Contracts\RepositoryInterface;
 

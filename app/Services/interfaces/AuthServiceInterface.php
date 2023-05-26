@@ -3,7 +3,6 @@
 namespace App\Services\interfaces;
 
 use App\DTO\Auth\AuthData;
-use App\Models\Paste;
 use App\Models\User;
 
 interface AuthServiceInterface
